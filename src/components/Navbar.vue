@@ -26,13 +26,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a
-              class="nav-link active"
-              id="link-text"
-              aria-current="page"
-              href="#"
-              >Add</a
-            >
+            <router-link to="/add">
+              <a
+                class="nav-link active"
+                id="link-text"
+                aria-current="page"
+                href="#"
+                >Add</a
+              >
+            </router-link>
             <a class="nav-link" id="link-text" href="#">History</a>
             <router-link to="/login">
               <a class="nav-link" id="link-text" href="#">Logout</a>

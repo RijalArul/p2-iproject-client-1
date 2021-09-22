@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue"
 import Discord from "../views/Discord.vue"
+import AddMeeting from "../views/AddMeeting.vue"
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,11 @@ const routes = [
     path: "/discord",
     name: "Discord",
     component: Discord,
+  },
+  {
+    path: "/add",
+    name: "AddMeeting",
+    component: AddMeeting,
   },
 ];
 
