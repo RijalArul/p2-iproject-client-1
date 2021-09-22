@@ -3,6 +3,7 @@
     <div id="home">
       <Navbar></Navbar>
       <Card></Card>
+      <Discord></Discord>
     </div>
   </div>
 </template>
@@ -16,12 +17,14 @@
 <script>
 import Card from "../components/Card.vue";
 import Navbar from "../components/Navbar.vue";
+import Discord from "../views/Discord.vue";
 
 export default {
   name: "Home",
   components: {
     Card,
     Navbar,
+    Discord
   },
 };
 </script>
