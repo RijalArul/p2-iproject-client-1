@@ -3,25 +3,21 @@
     <Navbar></Navbar>
     <div class="container">
       <div class="card-body p-4 p-sm-5">
-        <h5 class="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
-        <form>
+        <h5 class="card-title text-center mb-5 fw-light fs-5">Add Meeting</h5>
+        <form @submit.prevent="handleAddMeeting">
           <div class="form-floating mb-5">
             <input
-              type="email"
+              type="text"
               class="form-control rounded-pill"
               id="floatingInput"
               placeholder=""
+              v-model="activity"
             />
-            <label for="floatingInput">Email address</label>
+            <label for="floatingInput">Activity</label>
           </div>
           <div class="form-floating mb-5">
-            <input
-              type="password"
-              class="form-control rounded-pill"
-              id="floatingPassword"
-              placeholder="Password"
-            />
-            <label for="floatingPassword">Password</label>
+            <DatePicker v-model="meetDate" type="datetime" ></DatePicker>
+             <button type="button" @click="handleChangeDate">Pick Date</button>
           </div>
 
           <div class="d-grid">
@@ -30,13 +26,10 @@
               id="btn-submit"
               type="submit"
             >
-              Sign in
+              Add Meeting
             </button>
           </div>
           <hr class="my-4" />
-          <router-link to="/register">
-            <a href="#">Register, if you doesn't have account</a>
-          </router-link>
         </form>
       </div>
     </div>
@@ -52,16 +45,52 @@
 }
 
 #btn-submit {
-  background: linear-gradient(rgb(138, 56, 226), rgb(164, 70, 226));
+  background: linear-gradient(rgb(244, 240, 248), rgb(223, 195, 241));
   color: white;
 }
 </style>
 
 <script>
 import Navbar from "../components/Navbar.vue";
+import DatePicker from "vue2-datepicker";
+import "vue2-datepicker/index.css";
+
 export default {
+  data() {
+    return {
+      activity: "",
+      meetDate: "",
+      schedule: {
+        year: "",
+        month: "",
+        date: "",
+        hour: "",
+        minute: "",
+        second: "",
+      },
+    };
+  },
   components: {
     Navbar,
+    DatePicker,
+  },
+  methods: {
+    handleAddMeeting() {
+      const payload = {
+        activity: this.activity,
+        schedule: this.meetDate,
+      };
+
+      this.$store.dispatch('actionAddMeeting', payload)
+    },
+    handleChangeDate() {
+      this.schedule.year = this.meetDate.getFullYear();
+      this.schedule.month = this.meetDate.getMonth();
+      this.schedule.date = this.meetDate.getDate();
+      this.schedule.hour = this.meetDate.getHours();
+      this.schedule.minute = this.meetDate.getMinutes();
+      this.schedule.second = this.meetDate.getSeconds();
+    },
   },
 };
 </script>

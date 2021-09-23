@@ -2,7 +2,13 @@
   <div>
     <div id="home">
       <Navbar></Navbar>
-      <Card></Card>
+      <Card 
+        v-for="meeting in meetings"
+        :key="meeting.id"
+        :meeting="meeting"
+      >
+
+      </Card>
       <Discord></Discord>
     </div>
   </div>
@@ -25,9 +31,14 @@ export default {
     Navbar,
     Discord
   },
+  computed: {
+    meetings() {
+      return this.$store.state.meetings
+    }
+  },
   methods: {
     fetchMeeting() {
-      
+      this.$store.dispatch('actionFetchMeetings');
     }
   },
   created() {

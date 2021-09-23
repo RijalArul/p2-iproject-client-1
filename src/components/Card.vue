@@ -1,13 +1,12 @@
 <template>
   <div class="container">
     <div class="card">
-      <div class="card-header">Featured</div>
+      <div class="card-header">{{ meeting.schedule }}</div>
       <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
+        <h5 class="card-title">{{ meeting.User.username }}</h5>
         <p class="card-text">
-          With supporting text below as a natural lead-in to additional content.
+            {{ meeting.activity }}
         </p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
     </div>
   </div>
@@ -18,3 +17,9 @@
         margin-top: 50px;   
     }
 </style>
+
+<script>
+export default {
+    props: ['meeting']
+}
+</script>
