@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
 import router from "../router"
+import Swal from "sweetalert2";
 
 const BASE_URL = `http://localhost:3000`
 
@@ -29,7 +30,11 @@ export default new Vuex.Store({
           router.push('/')
         })
         .catch((err) => {
-          console.log(err)
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${err.response.data.message}`
+          })
         })
     },
     actionFetchMeetings(context) {
@@ -55,7 +60,11 @@ export default new Vuex.Store({
           router.push('/')
         })
         .catch((err) => {
-          console.log(err)
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${err.response.data.message}`
+          })
         })
     },
     actionHandleRegister(context, payload) {
@@ -65,8 +74,12 @@ export default new Vuex.Store({
           router.push('/')
         })
         .catch((err) => {
-          console.log(err)
-        })      
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${err.response.data.message}`
+          })
+        })
     },
     actionFetchHistory(context) {
       axios.get(`${BASE_URL}/meetings`, {
@@ -88,7 +101,11 @@ export default new Vuex.Store({
           router.push(`/`)
         })
         .catch((err) => {
-          console.log(err)
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${err.response.data.message}`
+          })
         })
     }
   },
