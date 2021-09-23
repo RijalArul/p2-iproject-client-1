@@ -80,6 +80,16 @@ export default new Vuex.Store({
         .catch((err) => {
           console.log(err)
         })
+    },
+    actionGoogleLogin(context, payload) {
+      axios.post(`${BASE_URL}/users/google`, payload)
+        .then((response) => {
+          localStorage.setItem('access_token', response.data.access_token)
+          router.push(`/`)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   },
   modules: {},

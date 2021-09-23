@@ -44,8 +44,8 @@
 }
 
 #btn-submit {
-  background: linear-gradient(rgb(181, 129, 233), rgb(226, 206, 238));
-  color: rgb(229, 94, 238);
+  background: linear-gradient(rgb(246, 244, 248), rgb(226, 206, 238));
+  color: rgb(27, 25, 27);
 }
 
 #title-card {

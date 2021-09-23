@@ -9,27 +9,18 @@
       >
 
       </Card>
-      <Discord></Discord>
     </div>
   </div>
 </template>
 
-<style scoped>
-#home {
-  background: linear-gradient(rgb(228, 168, 220), rgb(234, 215, 238));;
-  height: 1500px;
-}
-</style>
 <script>
 import Card from "../components/Card.vue";
 import Navbar from "../components/Navbar.vue";
-import Discord from "../views/Discord.vue";
 
 export default {
   components: {
     Card,
     Navbar,
-    Discord
   },
   computed: {
     meetings() {

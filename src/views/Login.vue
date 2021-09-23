@@ -38,10 +38,16 @@
                   </button>
                 </div>
                 <hr class="my-4" />
-                <router-link to="/register">
-                  <a href="#">Register, if you doesn't have account</a>
-                </router-link>
               </form>
+              <GoogleLogin
+                :params="params"
+                :renderParams="renderParams"
+                :onSuccess="onSuccess"
+                :onFailure="onFailure"
+              ></GoogleLogin>
+              <router-link to="/register">
+                <a href="#">Register, if you doesn't have account</a>
+              </router-link>
             </div>
           </div>
         </div>
@@ -63,27 +69,54 @@
 }
 
 .card {
-    height: 555px;
+  height: 555px;
 }
 </style>
 
 <script>
-export default {
-    data() {
-        return {
-            email: '',
-            password: ''
-        }
-    },
-    methods: {
-        handleLogin() {
-            const payload = {
-                email: this.email,
-                password: this.password
-            }
+import GoogleLogin from "vue-google-login";
 
-            this.$store.dispatch("actionHandleLogin", payload)
-        }
-    }
-}
+export default {
+  data() {
+    return {
+      email: "",
+      password: "",
+      params: {
+        client_id:
+          "440009139360-b104s2hjg9tsujc45b586nob96d08a9b.apps.googleusercontent.com",
+      },
+      renderParams: {
+        width: 250,
+        height: 50,
+        longtitle: true,
+      },
+    };
+  },
+  components: {
+    GoogleLogin,
+  },
+  methods: {
+    handleLogin() {
+      const payload = {
+        email: this.email,
+        password: this.password,
+      };
+
+      this.$store.dispatch("actionHandleLogin", payload);
+    },
+
+    onSuccess(googleUser) {
+      var id_token = googleUser.getAuthResponse().id_token;
+      const user = googleUser.getBasicProfile();
+
+      const payload = {
+        username: user.uU,
+        idToken: id_token,
+        email: user.Ot,
+      };
+
+      this.$store.dispatch("actionGoogleLogin", payload);
+    },
+  },
+};
 </script>
