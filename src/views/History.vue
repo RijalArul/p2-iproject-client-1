@@ -1,6 +1,13 @@
 <template>
-  <div class="container">
-    <CardHistory></CardHistory>
+  <div>
+    <Navbar></Navbar>
+    <div class="container">
+      <CardHistory
+        v-for="history in histories"
+        :key="history.id"
+        :history="history"
+      ></CardHistory>
+    </div>
   </div>
 </template>
 
@@ -10,10 +17,25 @@
 }
 </style>
 <script>
-import CardHistory from "../components/CardHistory.vue"
+import CardHistory from "../components/CardHistory.vue";
+import Navbar from "../components/Navbar.vue";
 export default {
-    components: {
-        CardHistory
-    }
+  components: {
+    CardHistory,
+    Navbar,
+  },
+  methods: {
+    fetchHistory() {
+      this.$store.dispatch("actionFetchHistory");
+    },
+  },
+  created() {
+    this.fetchHistory();
+  },
+  computed: {
+    histories() {
+      return this.$store.state.histories;
+    },
+  },
 };
 </script>

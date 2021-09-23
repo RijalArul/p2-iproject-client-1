@@ -3,7 +3,7 @@
     <Navbar></Navbar>
     <div class="container">
       <div class="card-body p-4 p-sm-5">
-        <h5 class="card-title text-center mb-5 fw-light fs-5">Add Meeting</h5>
+        <h5 class="card-title text-center mb-5 fw-light fs-5" id="title-card">Add Meeting</h5>
         <form @submit.prevent="handleAddMeeting">
           <div class="form-floating mb-5">
             <input
@@ -16,8 +16,7 @@
             <label for="floatingInput">Activity</label>
           </div>
           <div class="form-floating mb-5">
-            <DatePicker v-model="meetDate" type="datetime" ></DatePicker>
-             <button type="button" @click="handleChangeDate">Pick Date</button>
+            <DatePicker v-model="meetDate" type="datetime" confirm></DatePicker>
           </div>
 
           <div class="d-grid">
@@ -38,15 +37,19 @@
 
 <style scoped>
 .container {
-  background: linear-gradient(rgb(138, 56, 226), rgb(164, 70, 226));
+  background-color: #9e3dff;
   margin-top: 50px;
-  height: 600px;
+  height: 400px;
   width: 1000px;
 }
 
 #btn-submit {
-  background: linear-gradient(rgb(244, 240, 248), rgb(223, 195, 241));
-  color: white;
+  background: linear-gradient(rgb(181, 129, 233), rgb(226, 206, 238));
+  color: rgb(229, 94, 238);
+}
+
+#title-card {
+  color: white
 }
 </style>
 
@@ -60,14 +63,6 @@ export default {
     return {
       activity: "",
       meetDate: "",
-      schedule: {
-        year: "",
-        month: "",
-        date: "",
-        hour: "",
-        minute: "",
-        second: "",
-      },
     };
   },
   components: {
@@ -80,16 +75,7 @@ export default {
         activity: this.activity,
         schedule: this.meetDate,
       };
-
       this.$store.dispatch('actionAddMeeting', payload)
-    },
-    handleChangeDate() {
-      this.schedule.year = this.meetDate.getFullYear();
-      this.schedule.month = this.meetDate.getMonth();
-      this.schedule.date = this.meetDate.getDate();
-      this.schedule.hour = this.meetDate.getHours();
-      this.schedule.minute = this.meetDate.getMinutes();
-      this.schedule.second = this.meetDate.getSeconds();
     },
   },
 };

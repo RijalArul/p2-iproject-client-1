@@ -9,11 +9,15 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    meetings: []
+    meetings: [],
+    histories: []
   },
   mutations: {
     SET_MEETINGS(state, payload) {
       state.meetings = payload
+    },
+    SET_HISTORY_MEETINGS(state, payload) {
+      state.histories = payload
     }
   },
   actions: {
@@ -49,6 +53,29 @@ export default new Vuex.Store({
       })
         .then(() => {
           router.push('/')
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    actionHandleRegister(context, payload) {
+      axios.post(`${BASE_URL}/users/register`, payload)
+        .then((response) => {
+          localStorage.setItem('access_token', response.data.access_token)
+          router.push('/')
+        })
+        .catch((err) => {
+          console.log(err)
+        })      
+    },
+    actionFetchHistory(context) {
+      axios.get(`${BASE_URL}/meetings`, {
+        headers: {
+          access_token: localStorage.getItem('access_token')
+        }
+      })
+        .then((response) => {
+          context.commit('SET_HISTORY_MEETINGS', response.data)
         })
         .catch((err) => {
           console.log(err)

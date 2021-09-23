@@ -16,7 +16,7 @@
 
 <style scoped>
 #home {
-  background-color: coral;
+  background: linear-gradient(rgb(228, 168, 220), rgb(234, 215, 238));;
   height: 1500px;
 }
 </style>

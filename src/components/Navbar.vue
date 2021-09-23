@@ -2,12 +2,12 @@
   <div>
     <nav class="navbar navbar-expand-lg" id="navbar">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#" id="link-text">
+        <a class="navbar-brand" href="#" id="link-text" @click="clickHome">
           <img
             src="../assets/discord-logo-png-7617.png"
             alt=""
             width="90"
-            height="34"
+            height="64"
             class="d-inline-block align-text-center"
             id="link-text"
           />
@@ -38,9 +38,7 @@
             <router-link to="/history">
               <a class="nav-link" id="link-text" href="#">History</a>
             </router-link>
-            <router-link to="/login">
-              <a class="nav-link" id="link-text" href="#">Logout</a>
-            </router-link>
+            <a class="nav-link" id="link-text" href="#" @click="clickLogout">Logout</a>
           </div>
         </div>
       </div>
@@ -57,3 +55,17 @@
   color: aliceblue;
 }
 </style>
+
+<script>
+export default {
+    methods: {
+        clickLogout() {
+            localStorage.clear()
+            this.$router.push('/login')
+        },
+        clickHome() {
+            this.$router.push('/')
+        }
+    }
+}
+</script>
