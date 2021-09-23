@@ -4,7 +4,7 @@ import axios from "axios";
 import router from "../router"
 import Swal from "sweetalert2";
 
-const BASE_URL = `http://localhost:3000`
+const BASE_URL = `https://hacktiv8-discord-bot-alert.herokuapp.com`
 
 Vue.use(Vuex);
 
@@ -23,7 +23,6 @@ export default new Vuex.Store({
   },
   actions: {
     actionHandleLogin(context, payload) {
-      // console.log(payload)
       axios.post(`${BASE_URL}/users/login`, payload)
         .then((response) => {
           localStorage.setItem('access_token', response.data.access_token)
