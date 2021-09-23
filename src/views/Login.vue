@@ -6,13 +6,14 @@
           <div class="card border-0 shadow rounded-3 my-5">
             <div class="card-body p-4 p-sm-5">
               <h5 class="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
-              <form>
+              <form @submit.prevent="handleLogin">
                 <div class="form-floating mb-5">
                   <input
                     type="email"
                     class="form-control rounded-pill"
                     id="floatingInput"
                     placeholder=""
+                    v-model="email"
                   />
                   <label for="floatingInput">Email address</label>
                 </div>
@@ -22,6 +23,7 @@
                     class="form-control rounded-pill"
                     id="floatingPassword"
                     placeholder="Password"
+                    v-model="password"
                   />
                   <label for="floatingPassword">Password</label>
                 </div>
@@ -64,3 +66,24 @@
     height: 555px;
 }
 </style>
+
+<script>
+export default {
+    data() {
+        return {
+            email: '',
+            password: ''
+        }
+    },
+    methods: {
+        handleLogin() {
+            const payload = {
+                email: this.email,
+                password: this.password
+            }
+
+            this.$store.dispatch("actionHandleLogin", payload)
+        }
+    }
+}
+</script>

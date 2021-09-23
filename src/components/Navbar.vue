@@ -35,7 +35,9 @@
                 >Add</a
               >
             </router-link>
-            <a class="nav-link" id="link-text" href="#">History</a>
+            <router-link to="/history">
+              <a class="nav-link" id="link-text" href="#">History</a>
+            </router-link>
             <router-link to="/login">
               <a class="nav-link" id="link-text" href="#">Logout</a>
             </router-link>

@@ -20,11 +20,18 @@ import Navbar from "../components/Navbar.vue";
 import Discord from "../views/Discord.vue";
 
 export default {
-  name: "Home",
   components: {
     Card,
     Navbar,
     Discord
   },
+  methods: {
+    fetchMeeting() {
+      
+    }
+  },
+  created() {
+    this.fetchMeeting();
+  }
 };
 </script>

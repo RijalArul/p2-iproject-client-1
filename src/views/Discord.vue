@@ -1,17 +1,12 @@
 <template>
   <div>
     <form class="container-sm">
-      <label for="inputPassword5" class="form-label">Password</label>
+      <label for="inputPassword5" class="form-label">Discord ID</label>
       <input
-        type="password"
-        id="inputPassword5"
+        type="text"
+        id="inputtext5"
         class="form-control"
-        aria-describedby="passwordHelpBlock"
       />
-      <div id="passwordHelpBlock" class="form-text">
-        Your password must be 8-20 characters long, contain letters and numbers,
-        and must not contain spaces, special characters, or emoji.
-      </div>
     </form>
   </div>
 </template>
